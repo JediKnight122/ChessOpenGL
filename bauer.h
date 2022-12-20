@@ -6,7 +6,7 @@ class Bauer: public Figur
 {
 public:
     Bauer();
-    Bauer(Drawable &pDrawable);
+    Bauer(Drawable &pDrawable, Transformation pTransformation);
 };
 
 #endif // BAUER_H

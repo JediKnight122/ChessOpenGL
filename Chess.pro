@@ -6,7 +6,8 @@ SOURCES += \
     brickshader.cpp \
     feld.cpp \
     myscene.cpp \
-	figur.cpp
+	figur.cpp \
+	draganddropper.cpp
 
 RESOURCES += \
     MyShaders.qrc
@@ -15,5 +16,6 @@ HEADERS += \
     bauer.h \
     brickshader.h \
     feld.h \
-    figur.h
+    figur.h \
+	draganddropper.h
 

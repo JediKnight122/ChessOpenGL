@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/hello_glsl.vert</file>
+        <file>shaders/hello_glsl.frag</file>
+        <file>shaders/common.vert.inc</file>
+        <file>shaders/rotateX.vert</file>
+        <file>shaders/colorShader.frag</file>
+        <file>shaders/rotate.vert</file>
+        <file>shaders/brickShader.vert</file>
+        <file>shaders/brickShader.frag</file>
+    </qresource>
+</RCC>

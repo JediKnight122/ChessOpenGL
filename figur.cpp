@@ -2,13 +2,18 @@
 
 Figur::Figur()
 {
-
+    m_Transformation = Transformation();
 }
 
-Figur::Figur(Drawable &pDrawable){
+Figur::Figur(Drawable &pDrawable, Transformation pTransformation){
+
+	m_Transformation = pTransformation;
+
 m_Drawable= &pDrawable;
 m_TransformationNode = new Node(&m_Transformation);
-m_Node = new Node(*m_TransformationNode);
+m_TransformationNode->addChild(m_Node);
+m_Node = new Node();
+m_Node->addChild(new Node(m_Drawable));
 }
 
 void Figur::SetTransformation(Transformation pTransformation){
@@ -16,5 +21,5 @@ void Figur::SetTransformation(Transformation pTransformation){
 }
 
 Node* Figur::GetNode(){
-    return m_Node;
+    return m_TransformationNode;
 }

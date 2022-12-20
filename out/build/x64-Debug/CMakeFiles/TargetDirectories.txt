@@ -1,0 +1,5 @@
+C:/Users/Finn/OneDrive/Studium/Computergrafik/CGUebungen/Uebungen/Projekt/out/build/x64-Debug/CMakeFiles/Chess.dir
+C:/Users/Finn/OneDrive/Studium/Computergrafik/CGUebungen/Uebungen/Projekt/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Finn/OneDrive/Studium/Computergrafik/CGUebungen/Uebungen/Projekt/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Finn/OneDrive/Studium/Computergrafik/CGUebungen/Uebungen/Projekt/out/build/x64-Debug/CMakeFiles/Chess_autogen_timestamp_deps.dir
+C:/Users/Finn/OneDrive/Studium/Computergrafik/CGUebungen/Uebungen/Projekt/out/build/x64-Debug/CMakeFiles/Chess_autogen.dir

@@ -7,17 +7,18 @@
 
 class Figur
 {
-
+public:
+    Transformation m_Transformation;
 protected:
 Drawable * m_Drawable;
 Texture * m_texture;
-Transformation m_Transformation;
+
 Node * m_TransformationNode;
 Node * m_Node;
 
 public:
     Figur();
-    Figur(Drawable &pDrawable);
+    Figur(Drawable &pDrawable, Transformation pTransformation);
     Drawable * GetDrawable();
     void SetTransformation(Transformation pTransformation);
     Node * GetNode();

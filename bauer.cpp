@@ -5,7 +5,7 @@ Bauer::Bauer()
 
 }
 
-Bauer::Bauer(Drawable &pDrawable) : Figur(pDrawable){
+Bauer::Bauer(Drawable &pDrawable, Transformation pTransformation) : Figur(pDrawable, pTransformation){
 
 }
 

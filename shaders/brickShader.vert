@@ -2,6 +2,7 @@
 
 
 uniform vec2 brickSize;
+uniform float Time;
 
 out vec2 pos;
 out vec2 brickSizeFrag;

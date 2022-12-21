@@ -2,6 +2,7 @@ in vec4 color;
 in vec2 pos;
 in vec2 brickSizeFrag;
 
+uniform float Time;
 
 out vec4 fragColor;
 
@@ -21,8 +22,9 @@ void main()
 
        useBrick=step(newPosition, vec2(0.9f, 0.85f));
 
-       vec3 tempColor = color.xyz;
-       tempColor = mix(tempColor, vec3(0,0.2,0.1) , useBrick.x*useBrick.y);
+       vec3 tempColor = color.xyz*(sin(Time*10));
+
+       tempColor = mix(tempColor, vec3(0,0,0) , useBrick.x*useBrick.y);
                         //mix(HintergrundFarbe, BrickFarbe, Faktor)
 
 

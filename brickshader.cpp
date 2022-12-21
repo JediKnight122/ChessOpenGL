@@ -14,7 +14,7 @@ void Brickshader::SetBrickSize(QVector2D vec2){
 }
 
 void Brickshader::setShaderUniforms(){
-    Shader::setShaderUniforms();
+    ShaderTimed::setShaderUniforms();
     this->shaderProgram()->setUniformValue("brickSize",m_sizeBrick);
 }
 

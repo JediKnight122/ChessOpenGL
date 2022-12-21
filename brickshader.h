@@ -2,7 +2,7 @@
 #define BRICKSHADER_H
 #include "shadertimed.h"
 
-class Brickshader: public Shader
+class Brickshader: public ShaderTimed
 {
 public:
     Brickshader();

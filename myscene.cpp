@@ -11,6 +11,7 @@
 #include "feld.h"
 #include "trianglemesh.h"
 #include <QDebug>
+#include "brickshader.h"
 #include "color.h"
 #include "draganddropper.h"
 
@@ -97,13 +98,16 @@ Node* initScene1()
     Figur * schwarzeFiguren[16];
 
     
-
-    
+    Brickshader * shader = ShaderManager::getShader<Brickshader>("://shaders/brickShader.vert", "://shaders/brickShader.frag");
+shader->SetBrickSize(QVector2D(0.3, 0.2));
+shader->setMsecsPerIteration(16000);
+shader->setShaderUniforms();
     for(int i=0; i<8; i++){
 
         weisseFiguren[i]=new Bauer(*new Drawable(bauer->getGeometry()), schachBrett[1][i].GetTransformation());
        // weisseFiguren[i]->SetTransformation( schachBrett[1][i].GetTransformation());
         schachBrett[1][i].SetFigur(weisseFiguren[i]);
+        weisseFiguren[i]->GetDrawable()->setShader(shader);
     }
     for(int i=0; i<8; i++){
         schwarzeFiguren[i]=new Bauer(*new Drawable(bauer->getGeometry()), schachBrett[7][i].GetTransformation());

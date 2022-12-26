@@ -8,5 +8,11 @@
         <file>shaders/rotate.vert</file>
         <file>shaders/brickShader.vert</file>
         <file>shaders/brickShader.frag</file>
+        <file>shaders/dynenvmap.frag</file>
+        <file>shaders/dynenvmap.vert</file>
+        <file>shaders/planeShader.frag</file>
+        <file>shaders/planeShader.vert</file>
+        <file>shaders/SkyBox.frag</file>
+        <file>shaders/SkyBox.vert</file>
     </qresource>
 </RCC>

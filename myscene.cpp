@@ -14,6 +14,12 @@
 #include "brickshader.h"
 #include "color.h"
 #include "draganddropper.h"
+#include "simplesphere.h"
+#include "texture.h"
+#include "simplecube.h"
+#include "shader.h"
+#include "fboproperty.h"
+
 
 Node* initScene1();
 
@@ -49,22 +55,40 @@ Node* initScene1()
 #pragma endregion
 
     Drawable* v_Plane = new Drawable(new SimplePlane(100.f));
-    v_Plane->getProperty<Color>()->setValue(1,1,1,1);
     v_Plane->setStaticGeometry(true);
     Transformation* v_TransformationPlane = new Transformation();
     Node* transformationPlaneNode = new Node(v_TransformationPlane);
     v_TransformationPlane->rotate(-90.f, 1.f, 0.f, 0.f);
     v_TransformationPlane->translate(0,0,-5);
+
     PhysicObject* v_PlanePhys = v_PhysicEngine->createNewPhysicObject(v_Plane);
     PhysicObjectConstructionInfo* v_Constrinf = new PhysicObjectConstructionInfo();
     v_Constrinf->setCollisionHull(CollisionHull::BoxAABB); // Automatische generierung einer Box aus den Vertexpunkten
     v_PlanePhys->setConstructionInfo(v_Constrinf);
     v_PlanePhys->registerPhysicObject();
 
+    Shader *planeShader = ShaderManager::getShader("://shaders/planeShader.vert", "://shaders/planeShader.frag");
+    v_Plane->setShader(planeShader);
+
+
+
+    Drawable* v_SkyBox = new Drawable(new SimpleCube(500));
+    Texture* te = new Texture(path + QString("/cubemap"));
+    Node *backNode = new Node(v_SkyBox);
+    Shader *skyBoxShader = ShaderManager::getShader("://shaders/SkyBox.vert", "://shaders/SkyBox.frag");
+
+    v_SkyBox->setProperty<Texture>(te);
+    v_SkyBox->setShader(skyBoxShader);
+
+
+
+
+
     // Erzeuge Idle Observer der Drag and Drop übernimmt
     new DragAndDropper(v_PhysicEngine);
 
     root->addChild(transformationPlaneNode);
+    root->addChild(backNode);
     transformationPlaneNode->addChild(new Node(v_Plane));
 
 
@@ -102,12 +126,33 @@ Node* initScene1()
 shader->SetBrickSize(QVector2D(0.3, 0.2));
 shader->setMsecsPerIteration(16000);
 shader->setShaderUniforms();
+
+
+    Drawable* dynamicEnvMap = new Drawable(new TriangleMesh(path +QString("/model/PAWN.obj")));
+
+    Transformation* pawnTrans = new Transformation();
+    Node* pawnTransNode = new Node(pawnTrans);
+    pawnTrans->translate(17,-5,15);
+
+    Node* dynamicEnvMapNode = new Node(dynamicEnvMap);
+    Shader* dEnvMap = ShaderManager::getShader(":/shaders/dynenvmap.vert", ":/shaders/dynenvmap.frag");
+    FBOProperty* tFBO;
+    pawnTransNode->addChild(dynamicEnvMapNode);
+    dynamicEnvMap->setShader(dEnvMap);
+    tFBO = dynamicEnvMap->getProperty<FBOProperty>();
+    tFBO->init(root, dynamicEnvMap, GL_TEXTURE_CUBE_MAP);
+
+
+
     for(int i=0; i<8; i++){
 
         weisseFiguren[i]=new Bauer(*new Drawable(bauer->getGeometry()), schachBrett[1][i].GetTransformation());
        // weisseFiguren[i]->SetTransformation( schachBrett[1][i].GetTransformation());
         schachBrett[1][i].SetFigur(weisseFiguren[i]);
         weisseFiguren[i]->GetDrawable()->setShader(shader);
+
+
+
     }
     for(int i=0; i<8; i++){
         schwarzeFiguren[i]=new Bauer(*new Drawable(bauer->getGeometry()), schachBrett[7][i].GetTransformation());
@@ -115,7 +160,7 @@ shader->setShaderUniforms();
     }
     
 
-   
+
 
     
     
@@ -161,6 +206,12 @@ for(int i=0; i<8; i++){
 }
 
  qInfo() <<"Added Figures.";
+
+    root->addChild(dynamicEnvMapNode);
+
+
+
+
 
     return (root);
 }

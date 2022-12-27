@@ -8,22 +8,22 @@ void main(void){
 
     vec4 tempColor = vec4(1, 1, 1, 1);
     float tempPositionX = mod(floor(position.x), 10.0f);
-    int compareX = (int)tempPositionX;
+
 
     float tempPositionY = mod(floor(position.y), 10.0f);
-    int compareY = (int)tempPositionY;
 
-    if(compareX < 5){
+
+    if(tempPositionX < 5.0f){
         tempColor = vec4(1, 1, 1, 1);
     }else{
         tempColor = vec4(0, 0, 0, 1);
     }
 
-    if(tempColor == vec4(1, 1, 1, 1) && compareY < 5){
+    if(tempColor == vec4(1, 1, 1, 1) && tempPositionY < 5){
         tempColor = vec4(0, 0, 0, 1);
     }
 
-    if(compareX >= 5 && compareY < 5){
+    if(tempPositionX >= 5.0f && tempPositionY < 5){
         tempColor = vec4(1, 1, 1, 1);
     }
 

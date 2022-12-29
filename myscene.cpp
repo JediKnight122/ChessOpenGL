@@ -123,9 +123,13 @@ Node* initScene1()
 
     
     Brickshader * shader = ShaderManager::getShader<Brickshader>("://shaders/brickShader.vert", "://shaders/brickShader.frag");
+    Brickshader * shader2 = ShaderManager::getShader<Brickshader>("://shaders/brickShader.vert", "://shaders/brickShader_weiss.frag");
 shader->SetBrickSize(QVector2D(0.3, 0.2));
 shader->setMsecsPerIteration(16000);
 shader->setShaderUniforms();
+shader2->SetBrickSize(QVector2D(0.3, 0.2));
+shader2->setMsecsPerIteration(16000);
+shader2->setShaderUniforms();
 
 
     Drawable* dynamicEnvMap = new Drawable(new TriangleMesh(path +QString("/model/PAWN.obj")));
@@ -157,6 +161,7 @@ shader->setShaderUniforms();
     for(int i=0; i<8; i++){
         schwarzeFiguren[i]=new Bauer(*new Drawable(bauer->getGeometry()), schachBrett[7][i].GetTransformation());
         schachBrett[7][i].SetFigur(schwarzeFiguren[i]);
+         schwarzeFiguren[i]->GetDrawable()->setShader(shader2);
     }
     
 

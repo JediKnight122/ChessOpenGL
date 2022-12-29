@@ -14,5 +14,6 @@
         <file>shaders/planeShader.vert</file>
         <file>shaders/SkyBox.frag</file>
         <file>shaders/SkyBox.vert</file>
+        <file>shaders/brickShader_weiss.frag</file>
     </qresource>
 </RCC>
